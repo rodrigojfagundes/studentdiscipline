@@ -1,13 +1,17 @@
+
 package io.github.rodrigojfagundes.studentdiscipline.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +28,8 @@ public class Discipline implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updateAt;
 	
+	@ManyToMany(mappedBy = "disciplines")
+	private Set<Student> students = new HashSet<>();
 	
 	public Discipline() {}
 
@@ -76,6 +82,11 @@ public class Discipline implements Serializable {
 	}
 
 
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,3 +117,7 @@ public class Discipline implements Serializable {
 	
 	
 }
+
+
+
+

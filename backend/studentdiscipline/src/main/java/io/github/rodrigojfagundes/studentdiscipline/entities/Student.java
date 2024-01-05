@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,12 +33,12 @@ public class Student implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant date;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_student_discipline",
 	joinColumns = @JoinColumn(name = "student_id"),
 	inverseJoinColumns = @JoinColumn(name = "discipline_id")
 			)
-	Set<Discipline> disciplines = new HashSet<>();
+	private Set<Discipline> disciplines = new HashSet<>();
 	
 	public Student() {}
 
@@ -101,6 +102,7 @@ public class Student implements Serializable {
 	public Set<Discipline> getDisciplines() {
 		return disciplines;
 	}
+	
 
 	@Override
 	public int hashCode() {

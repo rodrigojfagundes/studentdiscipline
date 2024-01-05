@@ -3,6 +3,7 @@ package io.github.rodrigojfagundes.studentdiscipline.dto;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,8 +19,9 @@ public class StudentDTO implements Serializable {
 	private Double salary;
 	private String cpf;
 	private Instant date;	
+	private DisciplineDTO dis;
 	
-	private List<DisciplineDTO> disciplines = new ArrayList<>();
+	Set<DisciplineDTO> disciplines = new HashSet<>();
 	
 	public StudentDTO() {}
 
@@ -39,11 +41,12 @@ public class StudentDTO implements Serializable {
 		this.salary = entity.getSalary();
 		this.cpf = entity.getCpf();
 		this.date = entity.getDate();
+		entity.getDisciplines().forEach(discipline -> this.disciplines.add(new DisciplineDTO(discipline)));
 	}
 	
 	public StudentDTO(Student entity, Set<Discipline> disciplines) {
 		this(entity);
-		disciplines.forEach(dis -> this.disciplines.add(new DisciplineDTO(dis)));
+		//disciplines.forEach(dis -> this.disciplines.add(new DisciplineDTO(dis)));
 	}
 
 	public Long getId() {
@@ -94,13 +97,10 @@ public class StudentDTO implements Serializable {
 		this.date = date;
 	}
 
-	public List<DisciplineDTO> getDisciplines() {
+	public Set<DisciplineDTO> getDisciplines() {
 		return disciplines;
 	}
 
-	public void setDisciplines(List<DisciplineDTO> disciplines) {
-		this.disciplines = disciplines;
-	}
 	
 	
 }
