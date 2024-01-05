@@ -1,0 +1,97 @@
+<h1 class="mt-4">Student</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrum-bitem active">New</li>
+</ol>
+
+
+<div class="container">
+    <form #form="ngForm" (submit)="onSubmit()">
+
+        <div class="row">
+            <div class="col-md12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Student save/updates with success
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Discipline: </label>
+
+                    {{ discipline }}
+                    <select
+                        class="form-control"
+                        [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="disciplineSelected"
+                        multiple
+                    >
+                        <option value=""> Selecione ...</option> 
+                        <option *ngFor="let discipline of disciplines" 
+                        [value]="discipline.id">
+                            {{ discipline.name }}
+                        </option> 
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>City: </label>
+                    <input class="form-control" [(ngModel)]=student.city type="text" name="city" id="inputCity">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Name: </label>
+                    <input class="form-control" [(ngModel)]=student.name type="text" name="name" id="inputName">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>CPF: </label>
+                    <input class="form-control" [(ngModel)]=student.cpf type="text" name="cpf" id="inputcpf">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Salary: </label>
+                    <input class="form-control" [(ngModel)]=student.salary type="text" name="salary" id="inputSalary">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-sucess">
+                    <i class="fa fa-save"></i>
+                    Salvar
+                </button>
+
+                <button type="button" routerLink="/student-list" class="btn btn-danger ml-1">
+                    <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                </button>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>

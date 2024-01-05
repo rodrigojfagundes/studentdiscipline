@@ -1,0 +1,52 @@
+<h1 class="mt-4">Student</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-bitem active">Consult</li>
+</ol>
+<div class="container">
+    <form #consultForm="ngForm" (submit)="consult()">
+
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <button type="button" routerLink="/student-form"
+                 class="btn btn-warning ml-1">
+                    <i class="fa fa-plus"></i> New
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div class="row">
+        <div class="alert alert-warning" role="alert" *ngIf="message">
+            {{ message }}
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>CPF</th>
+                        <th>Salary</th>
+                        <th>Discipline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students">
+                        <td>{{student.id}}</td>
+                        <td>{{student.name}}</td>
+                        <td>{{student.city}}</td>
+                        <td>{{student.salary}}</td>
+                        <td>{{student.cpf}}</td>
+                        <td></td>
+                        <td>
+                        <button (click)="showDisciplines(student.id)">ver</button>
+                        </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
