@@ -1,0 +1,70 @@
+<h1 class="mt-4">Discipline</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consult Discipline</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{ messageSuccess }}
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="messageError">
+            {{ messageError }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-warning" (click)="newRegister()">
+                <i class="fa fa=plus"></i> New
+            </button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed tabled-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let discipline of disciplines">
+                        <td>{{discipline.id}}</td>
+                        <td>{{discipline.name}}</td>
+
+                        <td>
+                            <button class="btn btn-primary" routerLink="/discipline-form/{{discipline.id}}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger" (click)="prepareDelete(discipline)" data-toggle="modal"
+                                data-target="#modalDeleting">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div id="modalDeleting" class="modal" fade role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirm</h4>
+                </div>
+                <div class="modal-body" *ngIf="disciplineSelect">
+                    Confirm deleting of discipline {{ disciplineSelect }}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" (click)="deleteDiscipline()" data-dismiss="modal">Confirm</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

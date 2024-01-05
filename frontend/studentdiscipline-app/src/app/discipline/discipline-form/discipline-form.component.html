@@ -1,0 +1,52 @@
+<h1 class="mt-4">Discipline</h1>
+<ol class="breadcrub mb-4">
+    <li class="breadcrumb-item active">{{ discipline.id ? 'Edit' : 'Register' }}</li>
+</ol>
+<div class="container">
+    <form #disciplineForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Discipline save/updated with success
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngif="discipline.id">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID: </label>
+                    <input type="text" [ngModel]="discipline.id" name="id" class="form-control" disabled="true" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Name: </label>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="discipline.name" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!discipline.id">
+                    <i class="fa fa-save"></i> Save
+                </button>
+                <button type="submit" class="btn btn-primary" *ngIf="discipline.id">
+                    <i class="fa fa-sync-alt"></i> Update
+                </button>
+
+                <button type="button" class="btn btn-danger ml-1" (click)="backToList()">
+                    <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
