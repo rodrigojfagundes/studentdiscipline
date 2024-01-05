@@ -56,6 +56,7 @@ public class StudentService {
 		
 	}
 	
+	@Transactional
 	public StudentDTO update(Long id, StudentDTO dto) {
 		try {
 			Student entity = repository.getOne(id);
